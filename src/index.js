@@ -1,5 +1,10 @@
 const getResource = async (url) => {
     const res = await fetch(url);
+
+    if(!res.ok) {
+        throw new Error(`Could not fetch ${url}`)
+    }
+
     const body = await res.json();
     return body;
 }
@@ -7,12 +12,8 @@ const getResource = async (url) => {
 getResource('https://swapi.co/api/people/1/')
     .then((body) => {
         console.log(body.name);
+    })
+    .catch((err) => {
+        console.error('Could not fetch', err);
     });
 
-// fetch('https://swapi.co/api/people/1/')
-// .then((res) => {
-//     return res.json();
-// })
-// .then((body) => {
-//     console.log('body', body);
-// })
