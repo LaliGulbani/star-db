@@ -1,12 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+const getResource = async (url) => {
+    const res = await fetch(url);
+    const body = await res.json();
+    return body;
+}
 
-ReactDOM.render(<App />, document.getElementById('root'));
+getResource('https://swapi.co/api/people/1/')
+    .then((body) => {
+        console.log(body.name);
+    });
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// fetch('https://swapi.co/api/people/1/')
+// .then((res) => {
+//     return res.json();
+// })
+// .then((body) => {
+//     console.log('body', body);
+// })
