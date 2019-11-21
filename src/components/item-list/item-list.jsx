@@ -19,17 +19,16 @@ export default class ItemList extends Component {
       .then((peopleList) => this.setState({
         peopleList
     }))
-      .catch((err) => console.log('Lali'))
+      .catch((err) => console.log('err', err))
   }
 
   renderItems(arr) {
 
-    console.log({arr});
     return arr.map(({id, name}) => {
       return (
         <li className="list-group-item"
             key={id}
-            onClick={() => this.propsOnItemSelected(id)}>
+            onClick={() => this.props.onItemSelected(id)}>
           {name}
         </li>
       )
